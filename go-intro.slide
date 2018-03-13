@@ -1,0 +1,222 @@
+Go 
+ Wprowadzenie do Go i praktyczny przegląd języka 
+
+Piotr Przybylak
+Principal Software Developer, TomTom
+piotr.przybylak@tomtom.com
+@PiotrPrzybylak
+http://www.linkedin.com/in/piotrprzybylak
+
+* Agenda
+- Korzenie Go
+- Wybrane elementy języka
+- Wrażenia po roku z Go
+
+
+* Skąd wzięło się Go
+
+Język Go powstał w 2009 w Google.
+Jego autorami byli:
+
+- Robert Griesemer
+- Rob Pike
+- Ken Thompson
+
+Później dołączyli:
+
+- Russ Cox
+- Ian Lance Taylor
+
+Wersja 1.0 została wydana w 2012 roku
+
+
+
+* Dlaczego powstało Go
+
+Autorzy twierdzą, że wymyślili język Go czekając aż skompiluje się kod serwera nad którym pracowali ;)
+
+
+
+Google posiada:
+
+- Olbrzymią ilość kodu w Javie i C++
+- Rozwijanego przez olbrzymią ilość programistów
+- Uruchamianego na olbrzymiej ilości serwerów
+
+* Problemy Google
+
+Istniejące narzędzia nie były budowane z myślą o rozproszonych systemach wielkiej skali
+
+- Za wolno działają
+- Za wolno sie kompilują
+- Są za trudne i zbyt skomplikowane
+
+
+
+* Założenia projektu Go
+
+- Wydajne działanie
+- Wydajna kompilacja
+- Łatwość użycia
+
+
+
+* Hello World!
+
+.play hello1.go
+
+* Prawdziwe Hello World!
+
+.play hello2.go
+
+
+
+* I jeszcze jeden przykład
+
+.play hello3.go
+
+* Wygląda znajomo?
+
+- Go nie ma ambicji być przełomowym językiem
+- Jest za to w miarę nowym językiem
+- C XXI wieku? = C + strings + garbage collection + concurrency
+
+Podobnie jak C Go jest:
+
+- Statycznie typowane
+- Proceduralne
+- Kompilowane
+- Oparte o wskaźniki
+
+
+
+* Go w Google
+
+.image images/go_w_google_zaznaczenie.png _ 970
+
+* Przodkowie Go
+
+.image images/origins_of_go_graph.png 510 _
+
+Źródło: The Go Programming Language (Alan Donovan,‎ Brian Kernighan)
+
+
+
+
+* Dlaczego warto poznać Go
+* Prostota
+* Wydajne działanie i kompilacja
+* Łatwa współbieżność
+* Wbudowana obsługa standardów sieciowych
+- HTTP
+- gRPC
+- JSON
+- XML
+
+.play server.go
+
+
+
+* Gotowe narzędzia (budowanie, testowanie, formatowanie)
+* Pedantyczność kompilatora (nieużywane importy, zmienne)
+* Jeden sposób formatowania kodu
+* Kompozycja zamiast dziedziczenia
+* Wieloplatformowość
+* Wieloparametrowe wyniki funkcji
+* Funkcje jako koncept pierwszej kategorii
+* Wspieranie wielu platform
+* Bezpieczne szablony HTML
+
+Strictly Contextually Auto-Escaping Template Engines - zabezpieczenie przed XSS
+
+
+
+* Go wspiera użycie IDE ale go nie wymaga
+
+- Goland
+- Vim
+- Atom
+
+
+* Kontrowersyjne elementy
+
+* GOPATH
+.image images/gopath.png
+
+Źródło: http://www.musingscafe.com/get-going-with-golang-workspace-gopath-install-and-vendoring-part-1/
+
+
+
+* Vendorowanie
+.image images/vendor.png 550 _
+
+
+
+* Zależności i pakiety
+- System zależności oparty o mono repo Google
+- Wynoszenie zależności ("Hoisting dependencies")
+- Nie ma cyklicznych zależności
+
+
+* Obsługa błędów
+
+ if err != nil {
+    return err
+ }
+
+
+
+* Obsługa błędów - bez wyjątków jednak ani rusz
+
+- Funckcja panic()
+
+
+
+* Obiektowość bez dziedziczenia
+
+* Metody
+
+.play methods.go
+
+* Interfejsy
+
+ type geometry interface {
+    area() float64
+    perim() float64
+ }
+
+* Structural type system
+
+.play interface_implementation.go
+
+
+
+* Kompozycja
+
+.play composition.go
+
+
+
+* Pusty interfejs
+
+.play empty_interface.go
+
+* Brak Generycznych Generyków
+
+ type Stack struct {
+        items     []interface{}
+        lastIndex int
+ }
+
+Generyczność jest zarezerwowana dla wbudowanych kolekcji
+
+ type IntStack struct {
+         items     []int{}
+         lastIndex int
+ }
+
+
+
+* Hermetyzacja poprzez nazwy
+
+* Jak Go sprawdza się w małych projektach
